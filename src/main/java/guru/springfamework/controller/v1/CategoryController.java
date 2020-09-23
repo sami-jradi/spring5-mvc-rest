@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/v1/categories/")
+@RequestMapping("/api/v1/")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -20,14 +20,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping("categories")
     public ResponseEntity<CategoryListDTO> getAllCategories() {
 
         return new ResponseEntity<CategoryListDTO>(
                 new CategoryListDTO(categoryService.getAllCategories()), HttpStatus.OK);
     }
 
-    @GetMapping("{name}")
+    @GetMapping("categories/{name}")
     public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) {
         return new ResponseEntity<CategoryDTO>(
                 categoryService.getCategoryByName(name), HttpStatus.OK);
